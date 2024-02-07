@@ -5,8 +5,9 @@ function App() {
 
   return (
     <div>
-      <Card>
-
+      <Card width='400px' height='100px' >
+            <button>200</button>
+            <div>111</div>
       </Card>
     </div>
   )

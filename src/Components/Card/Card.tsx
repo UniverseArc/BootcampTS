@@ -1,8 +1,9 @@
+import IPropsCard from "./Card.types";
 
-const Card = () => {
+const Card = ({width, height, children}: IPropsCard) => {
     return(
-        <div style={{}}>
-            
+        <div style={{width, height, border: "1px solid black"}}>
+            {children}
         </div>
     )
 }
