@@ -1,7 +1,7 @@
 import { FC } from "react";
 import ICard, { CardVariant } from "./Card.types";
 
-const Card: FC<ICard> = ({ width, height, children, variant, onDoNothing, onDoNothingWithParams}) => {
+const Card: FC<ICard> = ({ width, height, children, variant, onDoNothingWithParams}) => {
     const someNum = 0;
     return (
         <div style={{
