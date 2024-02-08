@@ -6,6 +6,7 @@ import List from './Components/Shared/List/List'
 import UserItem from './Components/UsersList/UserItem/UserItem'
 import TodosItem from './Components/Todos/TodosItem'
 import { ITodosItem } from './Components/Todos/TodosItem.types'
+import EventExample from './Components/EventComponents/EventExample'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <div>
+      <EventExample />
       {/* <Card onDoNothingWithParams={(count) => alert("AloCount!" + `${count}`)}
       width='400px' height='100px' variant={CardVariant.primary} onDoNothing={() => alert("Alo!")}>
             <button>200</button>
