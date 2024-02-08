@@ -10,6 +10,7 @@ export interface IAddress {
     street: string;
     city: string;
     zipcode: string;
+    suite: string;
 }
 
 export interface IUsersListProps {

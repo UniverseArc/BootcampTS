@@ -1,22 +1,45 @@
+import { useEffect, useState } from 'react'
 import './App.css'
-import Card from './Components/Card/Card'
-import { CardVariant } from './Components/Card/Card.types'
-import { IUsersList } from './Components/UsersList/Users.types'
-import UsersList from './Components/UsersList/UsersList'
+import { IUser } from './Components/UsersList/Users.types'
+import axios from 'axios'
+import List from './Components/Shared/List/List'
+import UserItem from './Components/UsersList/UserItem/UserItem'
+import TodosItem from './Components/Todos/TodosItem'
+import { ITodosItem } from './Components/Todos/TodosItem.types'
 
 function App() {
-  const users: IUsersList[] = [
-    {id: 1, name: "UnArc", email: "asf@gmail.com", address: {city: "Moscow", street: "Leninskaya", zipcode: "111"}},
-    {id: 2, name: "AlArc", email: "asf@gmail.com", address: {city: "Spb", street: "Moskovskaya", zipcode: "222"}},
-  ]
+
+  const [users, setUsers] = useState<IUser[]>([])
+  const [todos, setTodos] = useState<ITodosItem[]>([])
+
+
+  async function fetchUsers() {
+    const response = await axios.get<IUser[]>("https://jsonplaceholder.typicode.com/users")
+    setUsers(response.data)
+  }
+
+  async function fetchTodos() {
+    const response = await axios.get<ITodosItem[]>("https://jsonplaceholder.typicode.com/todos?_limit=10")
+    setTodos(response.data)
+  }
+
+  useEffect(() => {
+    fetchUsers()
+    fetchTodos()
+  }, []) 
+
+
   return (
     <div>
-      <Card onDoNothingWithParams={(count) => alert("AloCount!" + `${count}`)}
+      {/* <Card onDoNothingWithParams={(count) => alert("AloCount!" + `${count}`)}
       width='400px' height='100px' variant={CardVariant.primary} onDoNothing={() => alert("Alo!")}>
             <button>200</button>
             <div>111</div>
-      </Card>
-      <UsersList users={users}></UsersList>
+      </Card> */}
+      <List items={users} backedItem={(user: IUser) => <UserItem key={user.id} user={user}/>} />
+      <br />
+      {/* <UsersList users={state}></UsersList> */}
+      <List items={todos} backedItem={(todo: ITodosItem) => <TodosItem key={todo.id} todo={todo}/>} />
     </div>
   )
 }
